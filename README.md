@@ -1,4 +1,9 @@
 binr
 ====
 
-R package for binning potentially unevenly distributed values in a vector into evenly distributed groups (bins). 
+R package that provides algorithms for cutting numerical values
+    exhibiting a potentially highly skewed distribution into evenly distributed
+    groups (bins). This functionality can be applied for binning discrete
+    values, such as counts, as well as for discretization of continuous values,
+    for example, during generation of features used in machine learning
+    algorithms.
