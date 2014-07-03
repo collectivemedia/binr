@@ -7,3 +7,5 @@ R package that provides algorithms for cutting numerical values
     values, such as counts, as well as for discretization of continuous values,
     for example, during generation of features used in machine learning
     algorithms.
+
+See http://collectivemedia.github.io/binr/ for more details.
