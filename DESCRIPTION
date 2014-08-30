@@ -11,7 +11,7 @@ Description: This package provides algorithms for cutting numerical values
     algorithms.
 URL: http://github.com/collectivemedia/binr
 Depends:
-    R (>= 3.0.3),
+    R (>= 2.15),
 License: Apache License (== 2.0)
 Copyright: Copyright (C) Collective, Inc. | file inst/COPYRIGHTS
 LazyData: true
