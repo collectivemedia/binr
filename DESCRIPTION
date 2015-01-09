@@ -1,15 +1,15 @@
 Package: binr
 Title: Cut Numeric Values Into Evenly Distributed Groups
-Version: 1.0
+Version: 1.1
 Author: Sergei Izrailev
-Maintainer: Sergei Izrailev <sizrailev@collective.com>
+Maintainer: Sergei Izrailev <sizrailev@jabiruventures.com>
 Description: This package provides algorithms for cutting numerical values
     exhibiting a potentially highly skewed distribution into evenly distributed
     groups (bins). This functionality can be applied for binning discrete
     values, such as counts, as well as for discretization of continuous values,
     for example, during generation of features used in machine learning
     algorithms.
-URL: http://github.com/collectivemedia/binr
+URL: http://github.com/jabiru/binr
 Depends:
     R (>= 2.15),
 License: Apache License (== 2.0)

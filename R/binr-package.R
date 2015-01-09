@@ -34,12 +34,12 @@
 #' @title Cut Numeric Values Into Evenly Distributed Groups (bins). 
 #' @author Sergei Izrailev
 #' @section Maintainer: Sergei Izrailev 
-#' @section Copyright: Copyright (C) Collective, Inc.
+#' @section Copyright: Copyright (C) Collective, Inc.; with portions Copyright (C) Jabiru Ventures LLC
 #' @section License: Apache License, Version 2.0, 
 #'    available at http://www.apache.org/licenses/LICENSE-2.0
-#' @section URL: http://github.com/collectivemedia/binr
+#' @section URL: http://github.com/jabiru/binr
 #' @section Installation from github: 
-#' \code{devtools::install_github("collectivemedia/binr")}
+#' \code{devtools::install_github("jabiru/binr")}
 #' @keywords csv delimited file read.csv bigint 64-bit integer64
 #' 
 # The next and last line should be the word 'NULL'.
