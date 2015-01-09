@@ -200,14 +200,22 @@ bins.getvals <- function(lst, minpt = -Inf, maxpt = Inf)
    }
    
    nbins <- length(lst$binct)
+   if (nbins == 0) stop("bins.getvals: zero bins")
    res <- vector(nbins + 1, mode="double")
    res[1] <- minpt
    res[nbins + 1] <- maxpt
-   for (i in 2:nbins)
+   
+   if (nbins > 1)
    {
-      res[i] <- cutpt(lst$xval[lst$binhi[i - 1]], lst$xval[lst$binlo[i]], lst$binct[i - 1], lst$binct[i])
+      for (i in 2:nbins)
+      {
+         res[i] <- cutpt(lst$xval[lst$binhi[i - 1]], lst$xval[lst$binlo[i]], lst$binct[i - 1], lst$binct[i])
+      }
+      names(res) <- c(paste("[", res[1:(nbins-1)], ", ", res[2:nbins], ")", sep=""), paste("[", res[nbins], ", ", res[nbins + 1], "]", sep=""), "LAST")     
+   } else {
+      # nbins = 1
+      names(res) <- c(paste("[", res[1], ", ", res[2], "]", sep=""), "LAST")
    }
-   names(res) <- c(paste("[", res[1:(nbins-1)], ", ", res[2:nbins], ")", sep=""), paste("[", res[nbins], ", ", res[nbins + 1], "]", sep=""), "LAST")
    
    attr(res, "binlo") <- lst$xval[lst$binlo]
    attr(res, "binhi") <- lst$xval[lst$binhi]
