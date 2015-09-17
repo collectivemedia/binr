@@ -29,7 +29,7 @@
 #' \code{bins} takes 3 separate approaches to generating the cuts, picks the one 
 #' resulting in the least mean square deviation from the ideal cut -
 #' \code{length(x) / target.bins} points in each bin - and then  merges small bins 
-#' unless excat.groups is \code{TRUE}
+#' unless \code{exact.groups} is \code{TRUE}
 #' The 3 approaches are: 
 #' \enumerate{
 #' \item{Use quantiles, and increase the number of even cuts up to max.breaks until the 
