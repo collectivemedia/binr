@@ -63,4 +63,3 @@ a new bin.
 \seealso{
 \code{\link{binr}}, \code{\link{bins}}, \code{\link{bins.quantiles}} \code{\link{bins.optimize}}
 }
-
