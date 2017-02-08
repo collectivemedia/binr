@@ -15,3 +15,4 @@ Depends:
 License: Apache License (== 2.0)
 Copyright: Copyright (C) Collective, Inc. | file inst/COPYRIGHTS
 LazyData: true
+RoxygenNote: 5.0.1
