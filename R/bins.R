@@ -186,8 +186,9 @@ bins <- function(x, target.bins, max.breaks = NA, exact.groups=F, verbose=F, err
 #' @param maxpt The value replacing the upper bound of the cut points.
 #' @return \code{bins.getvals} returns a vector of cut points extracted from the
 #'         \code{lst} object.
-#' @export
+#' @export bins.getvals
 #' @rdname bins
+#' @usage bins.getvals(lst, minpt = -Inf, maxpt = Inf)
 bins.getvals <- function(lst, minpt = -Inf, maxpt = Inf)
 {
    # finds the point that splits the area under the line from (lo, n1) to (hi, n2) in half.
@@ -232,9 +233,12 @@ bins.getvals <- function(lst, minpt = -Inf, maxpt = Inf)
 #' and moving optimizes this error function, which is the mean squared error
 #' of point counts in the bins relative to the optimal number of points per bin.
 #' @param binct The number of points falling into the bins.
-#' @export
+#' @export bins.merr
 #' @rdname bins
-bins.merr <- function(binct, target.bins) { mean((binct - sum(binct) / target.bins)^2) }
+#' @usage bins.merr(binct, target.bins)
+bins.merr <- function(binct, target.bins) {
+  mean((binct - sum(binct) / target.bins)^2)
+}
 
 #-------------------------------------------------------------------------------
 
