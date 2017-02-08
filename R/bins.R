@@ -95,7 +95,12 @@
 #' @seealso \code{\link{binr}}, \code{\link{bins.greedy}}, \code{\link{bins.quantiles}} \code{\link{bins.optimize}}
 #' @export
 #' @rdname bins
-bins <- function(x, target.bins, max.breaks = NA, exact.groups=F, verbose=F, errthresh = 0.1, minpts = NA)
+bins <- function(x, ...) {
+   UseMethod("bins")
+}
+
+#' @export
+bins.default <- function(x, target.bins, max.breaks = NA, exact.groups=F, verbose=F, errthresh = 0.1, minpts = NA)
 {
    if (length(x) < target.bins) stop(paste("bins: number of desired groups (", target.bins, ") is greater than the number of points (", length(x), ")"))
    all <- vector(3, mode="list")
@@ -117,7 +122,8 @@ bins <- function(x, target.bins, max.breaks = NA, exact.groups=F, verbose=F, err
    }
 
    all$quantile <- bins.quantiles(x, target.bins, max.breaks)
-   if (all$quantile$err / (length(x) / target.bins) < errthresh) return(all$quantile) # good enough
+   if (all$quantile$err / (length(x) / target.bins) < errthresh)
+      return(structure(all$quantile, class = "binr")) # good enough
 
    xval <- all$quantile$xval
    xtbl <- all$quantile$xtbl
@@ -172,9 +178,42 @@ bins <- function(x, target.bins, max.breaks = NA, exact.groups=F, verbose=F, err
       }
    }
 
-   return(lst)
+   structure(lst, class = "binr")
 }
 
+#' @export
+bins.data.frame <- function(df, ...) {
+   structure(
+     lapply(df, function(x, ...) bins(x, ...), ...),
+     class = "binr"
+     )
+}
+
+#' @export
+predict.binr <- function(obj, data, labels = FALSE, ...) {
+   if (is.data.frame(data)) {
+     if (all(names(data) %in% names(obj))) {
+       return(as.data.frame(sapply(
+         names(data), function(x) predict(obj[[x]], data[[x]],
+         labels = labels, ...)
+         )))
+     } else {
+        stop("data.frame has columns without bin cuts")
+     }
+   } else {
+     out <- cut(data, bins.getvals(obj),
+                labels = if(labels) NULL else FALSE, ...)
+     if (NA %in% out) {
+       if (labels) {
+         levels(out) <- c(levels(out), "[NA]")
+         out[is.na(out)] <- "[NA]"
+       } else {
+         out[is.na(out)] <- max(out, na.rm = TRUE) + 1
+       }
+     }
+     return(out)
+   }
+}
 
 #-------------------------------------------------------------------------------
 
