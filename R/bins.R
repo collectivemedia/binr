@@ -102,6 +102,7 @@ bins <- function(x, ...) {
 #' @export
 bins.default <- function(x, target.bins, max.breaks = NA, exact.groups=F, verbose=F, errthresh = 0.1, minpts = NA)
 {
+   x <- x[!is.na(x)]
    if (length(x) < target.bins) stop(paste("bins: number of desired groups (", target.bins, ") is greater than the number of points (", length(x), ")"))
    all <- vector(3, mode="list")
    names(all) <- c("quantile", "split", "merge")
