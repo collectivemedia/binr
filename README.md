@@ -8,4 +8,4 @@ R package that provides algorithms for cutting numerical values
     for example, during generation of features used in machine learning
     algorithms.
 
-See http://collectivemedia.github.io/binr/ for more details.
+See http://jabiru.github.io/binr/ for more details.
