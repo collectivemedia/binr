@@ -28,4 +28,3 @@ or until the target.bins number of bins is reached.
 \seealso{
 \code{\link{binr}}, \code{\link{bins}}, \code{\link{bins.greedy}}, \code{\link{bins.optimize}}
 }
-

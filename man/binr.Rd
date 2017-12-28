@@ -34,11 +34,12 @@ learning algorithms.
 
 \code{devtools::install_github("jabiru/binr")}
 }
-\author{
-Sergei Izrailev
-}
+
 \seealso{
 \code{\link{bins}}, \code{\link{bins.quantiles}}, \code{\link{bins.optimize}}, \code{\link{bins.greedy}}
+}
+\author{
+Sergei Izrailev
 }
 \keyword{64-bit}
 \keyword{bigint}
@@ -47,4 +48,3 @@ Sergei Izrailev
 \keyword{file}
 \keyword{integer64}
 \keyword{read.csv}
-

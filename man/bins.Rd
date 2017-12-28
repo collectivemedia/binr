@@ -2,11 +2,21 @@
 % Please edit documentation in R/bins.R
 \name{bins}
 \alias{bins}
+\alias{bins.default}
+\alias{bins.data.frame}
+\alias{predict.binr}
 \alias{bins.getvals}
 \alias{bins.merr}
 \title{Cut Numeric Values Into Evenly Distributed Groups (Bins)}
 \usage{
 bins(x, ...)
+
+\method{bins}{default}(x, target.bins, max.breaks = NA, exact.groups = F,
+  verbose = F, errthresh = 0.1, minpts = NA)
+
+\method{bins}{data.frame}(df, ...)
+
+\method{predict}{binr}(obj, data, labels = FALSE, ...)
 
 bins.getvals(lst, minpt = -Inf, maxpt = Inf)
 
@@ -14,14 +24,6 @@ bins.merr(binct, target.bins)
 }
 \arguments{
 \item{x}{Vector of numbers}
-
-\item{lst}{The list returned by the \code{bins} function.}
-
-\item{minpt}{The value replacing the lower bound of the cut points.}
-
-\item{maxpt}{The value replacing the upper bound of the cut points.}
-
-\item{binct}{The number of points falling into the bins.}
 
 \item{target.bins}{Number of groups desired; this is also the max number of groups.}
 
@@ -38,12 +40,20 @@ if FALSE, the result may contain fewer than target.bins bins}
 
 \item{minpts}{Minimum number of points in a bin.
 In \code{bins}, one of \code{max.breaks} and \code{minpts} must be supplied.}
+
+\item{lst}{The list returned by the \code{bins} function.}
+
+\item{minpt}{The value replacing the lower bound of the cut points.}
+
+\item{maxpt}{The value replacing the upper bound of the cut points.}
+
+\item{binct}{The number of points falling into the bins.}
 }
 \value{
 A list containing the following items (not all of them may be present):
 \itemize{
-   \item{binlo}{ - The "low" value falling into the bin.}
-   \item{binhi}{ - The "high" value falling into the bin.}
+   \item{binlo}{ - The index into \code{xval} yielding the "low" value falling into the bin.}
+   \item{binhi}{ - The index into \code{xval} yielding the "high" value falling into the bin.}
    \item{binct}{ - The number of points falling into the bin.}
    \item{xtbl}{ - The result of a call to \code{table(x)}.}
    \item{xval}{ - The sorted unique values of the data points x. Essentially, a numeric version of \code{names(xtbl)}.}
@@ -55,14 +65,16 @@ A list containing the following items (not all of them may be present):
 }
 
 \code{bins.getvals} returns a vector of cut points extracted from the
-        \code{lst} object.
+        \code{lst} object. The actual low and high values in each bin, as well
+        as the counts of values in each bin are placed in attributes
+        \code{binlo}, \code{binhi} and \code{binct}, respectively.
 }
 \description{
 \code{bins} - Cuts points in vector x into evenly distributed groups (bins).
 \code{bins} takes 3 separate approaches to generating the cuts, picks the one
 resulting in the least mean square deviation from the ideal cut -
-\code{length(x) / target.bins} points in each bin - and then  merges small bins
-unless excat.groups is \code{TRUE}
+\code{length(x) / target.bins} points in each bin - and then merges small bins
+unless \code{exact.groups} is \code{TRUE}
 The 3 approaches are:
 \enumerate{
 \item{Use quantiles, and increase the number of even cuts up to max.breaks until the
@@ -113,4 +125,3 @@ a value from one bin to the next, splitting a bin into two or merging two bins.
 \seealso{
 \code{\link{binr}}, \code{\link{bins.greedy}}, \code{\link{bins.quantiles}} \code{\link{bins.optimize}}
 }
-
